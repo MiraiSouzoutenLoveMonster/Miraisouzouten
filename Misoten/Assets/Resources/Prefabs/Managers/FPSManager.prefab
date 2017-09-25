@@ -126,6 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idDebug: 1
   textObject: {fileID: 114941095539615492}
+  fps: 60
 --- !u!114 &114941095539615492
 MonoBehaviour:
   m_ObjectHideFlags: 1
