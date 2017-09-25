@@ -14,6 +14,8 @@ public class FPSManager : MonoBehaviour {
 
     public Text textObject;//FPS表示用オブジェクト
 
+    public int fps = 60;         //上限FPS
+
     // Use this for initialization
     void Start () {
         if(instance != null)
@@ -25,7 +27,7 @@ public class FPSManager : MonoBehaviour {
         countRunTime = 0.0f;
 
         //QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = fps;
 
         DontDestroyOnLoad(gameObject);
 
