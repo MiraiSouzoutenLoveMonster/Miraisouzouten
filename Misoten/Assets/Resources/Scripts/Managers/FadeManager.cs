@@ -18,13 +18,11 @@ public class FadeManager : MonoBehaviour {
     [Range(0, 1.0f)]
     public float speed = 1.0f;     // 透明化の速さ
 
-
-    GameObject obj;             // 自分の
     public GameObject _child;   // パネルに使われるオブジェクト
     public Image childColor;           //子オブジェクトのRGBA値
-    FADE_MODE mode;             // フェードの状態
-    Color color;                // 色の値
-    string nextScene;           // 次のシーン
+    static FADE_MODE mode;             // フェードの状態
+    static Color color;                // 色の値
+    static string nextScene;           // 次のシーン
 
     // Startの前に行われる処理
     private void Awake()
@@ -73,8 +71,8 @@ public class FadeManager : MonoBehaviour {
                 if( nextScene != null )
                 {
                     // シーン移行
-                    nextScene = null;
                     SceneManager.LoadScene(nextScene);
+                    nextScene = null;
                 }
             }
             else if (color.a < 0)
@@ -86,12 +84,6 @@ public class FadeManager : MonoBehaviour {
             }
         }
 
-    }
-
-    // オブジェ取得
-    GameObject GetFade()
-    {
-        return obj;
     }
 
     // テクスチャの貼り付け
@@ -107,7 +99,7 @@ public class FadeManager : MonoBehaviour {
     }
 
     // 次のシーンへ行くフェード
-    public bool SetNextFade(string next)
+    static public bool SetNextFade(string next)
     {
         if (mode == FADE_MODE.FADE_NONE)
         {
@@ -122,7 +114,7 @@ public class FadeManager : MonoBehaviour {
     }
 
     // 暗転だけのフェード
-    public bool SetFade()
+    static public bool SetFade()
     {
         if (mode == FADE_MODE.FADE_NONE)
         {
