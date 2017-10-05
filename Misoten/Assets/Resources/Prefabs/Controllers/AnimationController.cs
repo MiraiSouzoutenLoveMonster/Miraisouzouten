@@ -22,7 +22,11 @@ public class AnimationController : MonoBehaviour {
             return;
         }
 
-        transform.Rotate(0,Input.GetAxis("Horizontal"),0);
+        float rotY = Input.GetAxis("Horizontal");
+
+        Debug.Log(rotY);
+
+        transform.Rotate(0, rotY, 0);
 
 		if(Input.GetKey(KeyCode.W))
         {
