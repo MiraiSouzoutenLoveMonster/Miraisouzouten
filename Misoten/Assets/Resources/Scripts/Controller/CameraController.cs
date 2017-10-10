@@ -4,33 +4,28 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    public GameObject player;//追従させる対象オブジェクト
+    public GameObject Target;
 
-    Quaternion beforeFrameRotation;
-
-    Vector3 offset;//カメラとプレイヤーの相対距離
+    Vector3 start;
+    Vector3 startRot;
+    float time;
 
 	// Use this for initialization
 	void Start () {
-        offset = transform.position - player.transform.position;
-        beforeFrameRotation = transform.rotation;
+        start = transform.position;
+        time = 0.0f;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        beforeFrameRotation = transform.rotation;
-        //プレイヤーが設定されていない場合は処理をしない
-        if (player == null)
+
+        if(time <= 1.0f)
         {
-            return;
+            time += Time.deltaTime;
+
+            transform.position = Vector3.Slerp(start, Target.transform.position, time);
+
+            
         }
-
-        transform.position = player.transform.position + offset;
-
-        if(PlayerController.GetPlayerState() == PlayerState.SLIP)
-        {
-            transform.rotation = beforeFrameRotation;
-        }
-
     }
 }

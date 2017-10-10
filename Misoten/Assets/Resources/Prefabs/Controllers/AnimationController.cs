@@ -5,9 +5,6 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour {
 
     public Animator animator;               //自身のアニメーターを設定
-    public float speed;
-    public Rigidbody rigid;
-    public float movePower;
 
     Vector3 oldRot;
 	// Use this for initialization
@@ -22,16 +19,9 @@ public class AnimationController : MonoBehaviour {
             return;
         }
 
-        float rotY = Input.GetAxis("Horizontal");
-
-        Debug.Log(rotY);
-
-        transform.Rotate(0, rotY, 0);
-
 		if(Input.GetKey(KeyCode.W))
         {
             animator.SetBool("Walk", true);
-            rigid.AddForce(transform.forward * movePower);
         }
 
         else
