@@ -6,15 +6,20 @@ public enum PlayerState
 {
     NORMAL = 0,
     SLIP,
+    COLLISION,
     MAX
 }
 
 public class PlayerController : MonoBehaviour {
 
     public Rigidbody rigid;
-    public float moveSpeed;
+    public float movePower;
+
+    public float collisionTime;//プレイヤーが壁とぶつかった後操作不能になる時間
 
     static public PlayerState playerState;
+
+    float countCollisionTime;
 
     // Use this for initialization
     void Start () {
@@ -22,27 +27,29 @@ public class PlayerController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-       //transform.Rotate(0,45*Time.deltaTime,0);
+	void FixedUpdate () {
+        float rotY = Input.GetAxis("Horizontal");
 
-        float x, z;
-        x = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        z = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        transform.Rotate(0, rotY, 0);
 
-        Vector3 dir = new Vector3(x,0,z);
-
-        if(dir.magnitude > 0.01f)
+        if(Input.GetKey(KeyCode.W) && playerState == PlayerState.NORMAL)
         {
-            float step = 2.0f * Time.deltaTime;
-            Quaternion qua = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Lerp(transform.rotation,qua,step);
+            rigid.AddForce(transform.forward * movePower);
         }
 
-        rigid.velocity = new Vector3(x,0,z);
+        if(playerState == PlayerState.COLLISION)
+        {
+
+        }
     }
 
     public static PlayerState GetPlayerState()
     {
         return playerState;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
     }
 }
