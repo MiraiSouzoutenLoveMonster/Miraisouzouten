@@ -48,6 +48,7 @@ public struct ClientLog
 	public List<string> log;
 }
 
+
 /// <summary>
 /// Handles all the OSC servers and clients of the current Unity game/application.
 /// Tracks incoming and outgoing messages.
@@ -83,27 +84,35 @@ public class OSCHandler : MonoBehaviour
 	private Dictionary<string, ServerLog> _servers = new Dictionary<string, ServerLog>();
 	
 	private const int _loglength = 25;
-	#endregion
-	
-	/// <summary>
-	/// Initializes the OSC Handler.
-	/// Here you can create the OSC servers and clientes.
-	/// </summary>
-	///  
-	 /*
-	public void Init()
-	{
-        //Initialize OSC clients (transmitters)
-        //Example:		
-        //CreateClient("SuperCollider", IPAddress.Parse("127.0.0.1"), 5555);
+    #endregion
 
-        //Initialize OSC servers (listeners)
-        //Example:
+    /// <summary>
+    /// Initializes the OSC Handler.
+    /// Here you can create the OSC servers and clientes.
+    /// </summary>
+    ///  
+    /*
+   public void Init()
+   {
+       //Initialize OSC clients (transmitters)
+       //Example:		
+       //CreateClient("SuperCollider", IPAddress.Parse("127.0.0.1"), 5555);
 
-        //CreateServer("AndroidPhone", 6666);
-	}
+       //Initialize OSC servers (listeners)
+       //Example:
+
+       //CreateServer("AndroidPhone", 6666);
+   }
 */
-	public void Init(string id,string targetAddr, int outGoingPort, int inComingPort)
+
+    // Startの前に行われる処理
+    private void Awake()
+    {
+        // 破棄を無効化
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void Init(string id,string targetAddr, int outGoingPort, int inComingPort)
 	{
 		//Initialize OSC clients (transmitters)
 		// Sender

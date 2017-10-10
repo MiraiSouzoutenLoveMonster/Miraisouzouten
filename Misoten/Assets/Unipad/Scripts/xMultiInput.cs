@@ -179,8 +179,14 @@ public class xMultiInputs  : MonoBehaviour{
 
 	OSCHostConroller hostcontroller;
 
+    // Startの前に行われる処理
+    private void Awake()
+    {
+        // 破棄を無効化
+        DontDestroyOnLoad(this.gameObject);
+    }
 
-	public xMultiInputs Init (string id,xInputType s){
+    public xMultiInputs Init (string id,xInputType s){
 		ID = id;
 		sensorType = s;
 

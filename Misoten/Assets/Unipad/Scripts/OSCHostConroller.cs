@@ -34,15 +34,27 @@ public class OSCHostConroller : MonoBehaviour {
 	private string debugtext;
 
 
-	#if UNITY_WEBGL
+#if UNITY_WEBGL
 	public Dictionary<string, string> webch;//socketid,xpadID.string
-	#endif
+#endif
 
 
-	// Script initialization
-	void Start() {  
+    // Startの前に行われる処理
+    private void Awake()
+    {
+        // 破棄を無効化
+        DontDestroyOnLoad(this.gameObject);
+    }
 
-		xPadChannels = new Dictionary<string, xPadChannel>();
+    // Script initialization
+    void Start() {
+        if (Application.platform != RuntimePlatform.WindowsEditor)
+        {
+            showGUI = false;
+        }
+
+
+        xPadChannels = new Dictionary<string, xPadChannel>();
 
 
 		uint[] colors = new uint[]{ 0xEAB3E4, 0x87BB6A, 0xFFFFFF };

@@ -218,6 +218,8 @@ MonoBehaviour:
   mic:
   - audio: {fileID: 82395820378065454}
     deviceName: Internal Mic
-  sensitivity: 20
+  - audio: {fileID: 82395820378065454}
+    deviceName: Internal Mic
+  sensitivity: 10
   lastLoudnessInfluence: 0
   showGUI: 1
