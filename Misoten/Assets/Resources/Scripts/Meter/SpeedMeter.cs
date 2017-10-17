@@ -8,6 +8,8 @@ public class SpeedMeter : MonoBehaviour {
     public Text speedText;          // 速度テキスト
     public float maxSpeed;          // 最大速度
 
+    static float playerMaxSpeed;//プレイヤーの最大スピードを受け取る変数
+
     float meterAmountSplit;         // メータ表示の分割数
     float meterAmount;              // メータの表示量
     float getSpeed;                 // 速度受け取るよ
@@ -37,6 +39,7 @@ public class SpeedMeter : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        playerMaxSpeed = 0;
         meterAmountSplit = 1.0f / maxSpeed;
         getSpeed = 0;
         SetSpeedText(getSpeed);

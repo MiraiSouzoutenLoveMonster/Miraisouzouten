@@ -5,7 +5,8 @@ using UnityEngine;
 public struct PlayerData
 {
     public string name; //プレイヤーの名前
-    public float voice; //声の大きさ
+    public float voice; //声の大きさ。要は最大速度
+    public float time;//プレイヤーの走破時間
 }
 
 public class SaveDataManager : MonoBehaviour {
@@ -21,6 +22,8 @@ public class SaveDataManager : MonoBehaviour {
         {
             return;
         }
+
+        playerDataList = new List<PlayerData>();
 
         LoadPlayerData();
     }
@@ -53,8 +56,16 @@ public class SaveDataManager : MonoBehaviour {
                 voice = 0.0f;
             }
 
+            float time = PlayerPrefs.GetFloat(rank,-1);
+
+            if(time == -1)
+            {
+                time = 0;
+            }
+
             data.name = name;
             data.voice = voice;
+            data.time = time;
 
             playerDataList.Add(data);
         }
@@ -84,7 +95,7 @@ public class SaveDataManager : MonoBehaviour {
     }
 
     //プレイヤーのセーブデータを取得
-    static List<PlayerData> GetSaveData()
+    static public List<PlayerData> GetSaveData()
     {
         return playerDataList;
     }
