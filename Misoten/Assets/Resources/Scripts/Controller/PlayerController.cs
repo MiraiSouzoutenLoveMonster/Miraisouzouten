@@ -17,29 +17,53 @@ public class PlayerController : MonoBehaviour {
 
     public float collisionTime;//プレイヤーが壁とぶつかった後操作不能になる時間
 
+    public LayerMask targetLayer;
+
     static public PlayerState playerState;
 
     float countCollisionTime;
 
+    float playerSpeed;
+
     // Use this for initialization
     void Start () {
         playerState = PlayerState.NORMAL;
-	}
+        playerSpeed = 0;
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        float rotY = Input.GetAxis("Horizontal");
+        //float rotY = Input.GetAxis("Horizontal");
 
-        transform.Rotate(0, rotY, 0);
+        //transform.Rotate(0, rotY*3, 0);
 
-        if(Input.GetKey(KeyCode.W) && playerState == PlayerState.NORMAL)
+        //if(Input.GetKey(KeyCode.W) && playerState == PlayerState.NORMAL)
+        //{
+        //    //rigid.AddForce(transform.forward * movePower);
+        //    rigid.velocity = transform.forward * movePower;
+        //}
+        //else
+        //{
+        //    rigid.velocity = Vector3.zero;
+        //}
+
+        Debug.Log(transform.forward);
+
+        rigid.velocity = transform.forward * movePower;
+
+        if (playerState == PlayerState.COLLISION)
         {
-            rigid.AddForce(transform.forward * movePower);
+
         }
 
-        if(playerState == PlayerState.COLLISION)
+        RaycastHit hitInfo;
+        if(Physics.Raycast(transform.position,Vector3.down,
+            out hitInfo,Mathf.Infinity,targetLayer))
         {
-
+            Vector3 newPos = transform.position;
+            newPos.y = hitInfo.point.y;
+            transform.position = newPos;
         }
     }
 

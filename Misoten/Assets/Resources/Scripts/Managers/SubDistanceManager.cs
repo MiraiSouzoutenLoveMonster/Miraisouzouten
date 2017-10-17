@@ -11,6 +11,8 @@ public class SubDistanceManager : MonoBehaviour {
     public GameObject player1;
     public GameObject player2;
 
+    public GameObject goal;
+
     public float underLine;
 
 	// Use this for initialization
