@@ -7,6 +7,7 @@ public enum PlayerState
     NORMAL = 0,
     SLIP,
     COLLISION,
+    CURVE,
     MAX
 }
 
@@ -25,15 +26,23 @@ public class PlayerController : MonoBehaviour {
 
     float playerSpeed;
 
+    public Camera playerCamera;
+
+    public int playerNumber;
+
     // Use this for initialization
     void Start () {
         playerState = PlayerState.NORMAL;
         playerSpeed = 0;
 
+        Physics.gravity = new Vector3(0,-9.81f * 200, 0);
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+       // movePower++;
+
         //float rotY = Input.GetAxis("Horizontal");
 
         //transform.Rotate(0, rotY*3, 0);
@@ -47,24 +56,27 @@ public class PlayerController : MonoBehaviour {
         //{
         //    rigid.velocity = Vector3.zero;
         //}
-
-        Debug.Log(transform.forward);
-
+        
         rigid.velocity = transform.forward * movePower;
+        rigid.AddForce(transform.forward*movePower,ForceMode.Acceleration);
 
-        if (playerState == PlayerState.COLLISION)
+        if (playerState == PlayerState.CURVE)
         {
 
         }
 
-        RaycastHit hitInfo;
-        if(Physics.Raycast(transform.position,Vector3.down,
-            out hitInfo,Mathf.Infinity,targetLayer))
-        {
-            Vector3 newPos = transform.position;
-            newPos.y = hitInfo.point.y;
-            transform.position = newPos;
-        }
+        playerSpeed = rigid.velocity.magnitude;
+
+        //ResultWorks.SetMaxSpeed(playerNumber,playerSpeed);
+
+        //RaycastHit hitInfo;
+        //if(Physics.Raycast(transform.position,Vector3.down,
+        //    out hitInfo,Mathf.Infinity,targetLayer))
+        //{
+        //    Vector3 newPos = transform.position;
+        //    newPos.y = hitInfo.point.y;
+        //    transform.position = newPos;
+        //}
     }
 
     public static PlayerState GetPlayerState()
@@ -72,8 +84,26 @@ public class PlayerController : MonoBehaviour {
         return playerState;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
+        if(other.transform.tag == "Curve")
+        {
+            //playerState = PlayerState.CURVE;
+        }
+    }
 
+    public void ChangeDefaultCameraActive()
+    {
+        playerCamera.gameObject.SetActive(!playerCamera.gameObject.active);
+    }
+
+    public Rigidbody GetRigidBody()
+    {
+        return rigid;
+    }
+
+    public int GetPlayerNumber()
+    {
+        return playerNumber;
     }
 }

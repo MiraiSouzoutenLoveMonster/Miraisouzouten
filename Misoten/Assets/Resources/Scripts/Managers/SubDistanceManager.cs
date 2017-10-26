@@ -22,17 +22,15 @@ public class SubDistanceManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        Vector3 player1Pos = player1.transform.position;
-        Vector3 player2Pos = player2.transform.position;
 
-        float distance = (player1Pos - player2Pos).sqrMagnitude;
+        float distance = (player1.transform.position - player2.transform.position).sqrMagnitude;
 
-        if(distance <= underLine)
+        if (distance <= underLine)
         {
             distance = 0.0f;
         }
 
         subDistance.text = ((int)distance).ToString();
 
-	}
+    }
 }
