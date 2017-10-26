@@ -8,6 +8,7 @@ TagManager:
   - Stage
   - Wall
   - Ground
+  - Curve
   layers:
   - Default
   - TransparentFX
