@@ -4,28 +4,24 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultSpeed : MonoBehaviour {
-
-    public int playerNumber;
-
-    public Text SpeedText;
+    public int playerNumber;        // プレイヤーの番号だよ
+    public Text SpeedText;          // 速度を表示するテキストだよ
+    float speed;                    // 速度だよ
 
 	// Use this for initialization
 	void Start () {
-        if (playerNumber > 2 || playerNumber <= 0)
-        {
-            playerNumber = 1;
-        }
+        //ゲーム画面で使っていたタイムを取得する
+        speed = (int)ResultWork.GetMaxSpeed(playerNumber);
+        string str = "";                    // 文字列だよー
+        str += ((int)speed).ToString();     // 速度を文字列にするよ
+        str += "km/h";
 
-        if(SpeedText == null)
-        {
-            return;
-        }
-
-        //ゲーム画面で計測したスピードを取得する
+        // 入れるよー
+        SpeedText.text = str;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 }

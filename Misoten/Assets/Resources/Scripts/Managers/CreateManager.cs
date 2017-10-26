@@ -23,6 +23,12 @@ public class CreateManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        int maxDisplayCount = 2;
+        for (int i = 0; i < maxDisplayCount && i < Display.displays.Length; i++)
+        {
+            Display.displays[i].Activate();
+        }
+
         // オブジェを消えないように作るよ
         obj = new GameObject[prefab.Length];
 
