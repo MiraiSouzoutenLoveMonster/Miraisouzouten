@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;               // UIを使用可能にする
 
 public class ResultManager : MonoBehaviour {
-
     public string nextScene = "Title";
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -15,6 +15,7 @@ public class ResultManager : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            ResultWork.Init();
             MultiFadeManager.SetNextFade(nextScene);
         }
     }
