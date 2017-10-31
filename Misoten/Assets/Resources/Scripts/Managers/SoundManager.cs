@@ -92,6 +92,8 @@ public class SoundManager : MonoBehaviour{
         {
             VoiceSources[i] = gameObject.AddComponent<AudioSource>();
         }
+
+        SetSound();
     }
 
     void Update()
