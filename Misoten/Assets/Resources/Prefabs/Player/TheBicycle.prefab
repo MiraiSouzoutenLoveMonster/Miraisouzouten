@@ -11719,7 +11719,8 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  playerCamera: {fileID: 1659039322807608}
+  playerCamera: {fileID: 20106272729973160}
+  playerNumber: 0
 --- !u!124 &124393085065506644
 Behaviour:
   m_ObjectHideFlags: 1

@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class GoalManager : MonoBehaviour {
 
-    bool isFinished;
+    int goalPlayerNum;
 
 	// Use this for initialization
 	void Start () {
-        isFinished = false;
 
     }
 	
@@ -20,13 +19,16 @@ public class GoalManager : MonoBehaviour {
     //ゴールした時の処理
     void Goal(PlayerController player)
     {
-        ResultWorks.SetTime(player.GetPlayerNumber(),);
-        if (isFinished)
+        int playerNumber = player.GetPlayerNumber();
+        ResultWork.SetTime(playerNumber, (int)GameTimeManager.GetPlayerGoalTime(playerNumber));
+
+        goalPlayerNum++;
+
+        if(goalPlayerNum >= 2)
         {
-            return;
+            //リザルト画面へ移行
+            FadeManager.SetNextFade("Result");
         }
-        //リザルト画面へ移行
-        FadeManager.SetNextFade("Result");
     }
 
     private void OnTriggerEnter(Collider other)
