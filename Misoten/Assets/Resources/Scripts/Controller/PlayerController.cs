@@ -56,9 +56,18 @@ public class PlayerController : MonoBehaviour {
         //{
         //    rigid.velocity = Vector3.zero;
         //}
-        
-        rigid.velocity = transform.forward * movePower;
-        rigid.AddForce(transform.forward*movePower,ForceMode.Acceleration);
+
+        switch (playerState)
+        {
+            case PlayerState.NORMAL:
+                rigid.velocity = transform.forward * movePower;
+                rigid.AddForce(transform.forward * movePower, ForceMode.Acceleration);
+                break;
+
+            case PlayerState.CURVE:
+
+                break;
+        }
 
         if (playerState == PlayerState.CURVE)
         {
@@ -67,7 +76,7 @@ public class PlayerController : MonoBehaviour {
 
         playerSpeed = rigid.velocity.magnitude;
 
-        //ResultWorks.SetMaxSpeed(playerNumber,playerSpeed);
+        ResultWork.SetMaxSpeed(playerNumber,playerSpeed);
 
         //RaycastHit hitInfo;
         //if(Physics.Raycast(transform.position,Vector3.down,
@@ -82,6 +91,11 @@ public class PlayerController : MonoBehaviour {
     public static PlayerState GetPlayerState()
     {
         return playerState;
+    }
+
+    public void SetPlayerStatus(PlayerState state)
+    {
+        playerState = state;
     }
 
     private void OnTriggerEnter(Collider other)

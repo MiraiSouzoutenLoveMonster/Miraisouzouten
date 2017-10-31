@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameTimeManager : MonoBehaviour {
 
-    public Text drawTimeText;
+    public Text[] drawTimeText;
     public bool IsDraw;
 
     static float[] playerGoalTime;
@@ -16,7 +16,7 @@ public class GameTimeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         playTime = 0;
-        isCount = false;
+        isCount = true;
         playerGoalTime = new float[2];
         playerGoalTime[0] = 0;
         playerGoalTime[1] = 0;
@@ -27,6 +27,18 @@ public class GameTimeManager : MonoBehaviour {
 		if(isCount)
         {
             playTime += Time.deltaTime;
+            for(int i = 0; i < playerGoalTime.Length; i++)
+            {
+                playerGoalTime[i] = playTime;
+            }
+        }
+
+        if(IsDraw)
+        {
+            for(int i = 0; i < drawTimeText.Length; i++)
+            {
+                drawTimeText[i].text = playTime.ToString("f2");
+            }
         }
 	}
 
