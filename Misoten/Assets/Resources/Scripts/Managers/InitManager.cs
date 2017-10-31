@@ -22,9 +22,9 @@ public class InitManager : MonoBehaviour
             }
         }
 
-        if ( count == AndroidInputManager.GetConnectInputCount())
+        if ( count == AndroidInputManager.GetConnectInputCount() ||
+             Input.GetKeyDown(KeyCode.Return) )
         {
-
             MultiFadeManager.SetNextFade("Title", 0);
         }
     }
