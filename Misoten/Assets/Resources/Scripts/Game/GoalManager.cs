@@ -1,19 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoalManager : MonoBehaviour {
+    int goalPlayerNum;  // 俺いじってないやつ
 
-    int goalPlayerNum;
+    public Sprite goalSprite;                   // ゴールの画像だよ
+    public Image[] goalImage = new Image[2];    // ゴールの表示領域だよ
+    public Vector3 maxScale;                    // スケールの最大値だよ
+    public int addTime;                         // 加算に使う時間だよ
+    int[] time = new int[2];                    // 加算した時間だよ
+    Vector3 addScale;                           // 加算するスケールの値だよ
 
 	// Use this for initialization
 	void Start () {
+        // 加算するスケールの値を計算するよ
+        addScale = maxScale / addTime;
+
+        for (int i = 0; i < 2; i++)
+        {
+            time[i] = 0;
+        }
+        goalImage[0].sprite = goalSprite;
 
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+    // Update is called once per frame
+    void Update () {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            goalImage[1].sprite = goalSprite;
+
+        }
+
+        // ゴールしたら画像が貼ってあるよ
+        for (int i = 0; i < 2; i++)
+        {
+            // 画像あるかチェックだよ
+            if (goalImage[i].sprite != null)
+            {
+                // 画像あるから時間加算するよ
+                time[i]++;
+                // 加算の時間より小さいかチェックだよ
+                if (time[i] < addTime)
+                {
+                    // スケールに加算するよ
+                    goalImage[i].rectTransform.localScale += addScale;
+                }
+            }
+        }
 	}
 
     //ゴールした時の処理
@@ -21,6 +57,9 @@ public class GoalManager : MonoBehaviour {
     {
         int playerNumber = player.GetPlayerNumber();
         ResultWork.SetTime(playerNumber, (int)GameTimeManager.GetPlayerGoalTime(playerNumber));
+
+        // ゴールのspriteを貼り付けるよ
+        goalImage[playerNumber].sprite = goalSprite;
 
         goalPlayerNum++;
 
