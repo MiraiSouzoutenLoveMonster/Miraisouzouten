@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
 
     public LayerMask targetLayer;
 
-    static public PlayerState playerState;
+    public PlayerState playerState;
 
     float playerSpeed;
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour {
                 break;
 
             case PlayerState.CURVE:
-
+                
                 break;
         }
 
@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour {
         //}
     }
 
-    public static PlayerState GetPlayerState()
+    public PlayerState GetPlayerState()
     {
         return playerState;
     }

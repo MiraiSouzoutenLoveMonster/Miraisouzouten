@@ -22,7 +22,7 @@ public class GoalManager : MonoBehaviour {
         {
             time[i] = 0;
         }
-        goalImage[0].sprite = goalSprite;
+        //goalImage[0].sprite = goalSprite;
 
     }
 
@@ -66,7 +66,7 @@ public class GoalManager : MonoBehaviour {
         if(goalPlayerNum >= 2)
         {
             //リザルト画面へ移行
-            FadeManager.SetNextFade("Result");
+            MultiFadeManager.SetNextFade("Result");
         }
     }
 

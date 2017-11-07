@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5f751cc03bbcc4042a6562c51f8d4652
-timeCreated: 1509442949
+timeCreated: 1510043552
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -96,10 +96,10 @@ TextureImporter:
       name: sigou_0
       rect:
         serializedVersion: 2
-        x: 344
-        y: 55
-        width: 280
-        height: 889
+        x: 340
+        y: 162
+        width: 279
+        height: 695
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -110,10 +110,10 @@ TextureImporter:
       name: sigou_1
       rect:
         serializedVersion: 2
-        x: 704
-        y: 711
-        width: 153
-        height: 153
+        x: 701
+        y: 625
+        width: 152
+        height: 152
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

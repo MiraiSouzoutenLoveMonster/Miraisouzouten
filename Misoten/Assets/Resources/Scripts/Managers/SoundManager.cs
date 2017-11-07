@@ -357,7 +357,7 @@ public class SoundManager : MonoBehaviour{
 
         for (int i = 0; i < Voice.Length; i++)
         {
-            VoiceData.Add(BGM[i].name, i);
+            VoiceData.Add(Voice[i].name, i);
         }
 
         //filePath = System.IO.Directory.GetFiles(path + "BGM/", "*.wav");
