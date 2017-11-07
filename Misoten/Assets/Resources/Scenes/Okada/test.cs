@@ -32,7 +32,6 @@ public class test : MonoBehaviour
     [CustomEditor(typeof(test))]               //!< 拡張するときのお決まりとして書いてね
     public class testEditor : Editor           //!< Editorを継承するよ！
     {
-        Rect addButtonRect = new Rect(new Vector2(1,1),new Vector2(2,2));
         bool folding = false;   //折り畳みのフラグだよ
 
         // インスペ拡張するよ
@@ -44,9 +43,15 @@ public class test : MonoBehaviour
             // 折りたたみ表示
             if (folding = EditorGUILayout.Foldout(folding, "WayPoint"))
             {
-                if (GUI.Button(addButtonRect, "+"))
+                EditorGUILayout.BeginHorizontal();      // 開始
+                GameObject addObj = EditorGUILayout.ObjectField(null, typeof(GameObject), true) as GameObject;
+                if (GUILayout.Button("+", GUILayout.Width(50f)))
                 {
-                } 
+                }
+                if (GUILayout.Button("-", GUILayout.Width(50f)))
+                {
+                }
+                EditorGUILayout.EndHorizontal();        // 終了
 
                 for (int i = 0; i < wayList.Count; i++)
                 {
