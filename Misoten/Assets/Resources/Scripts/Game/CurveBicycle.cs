@@ -11,6 +11,9 @@ public class CurveBicycle : MonoBehaviour {
     float rotTime;
     bool isCurve;
 
+    public float curvePower;              //カーブの際スピードを緩める倍率
+    public float initplayerSpeed;         //カーブに入ったときのプレイヤーの速度
+
     //ベジェ曲線のポイント
     public GameObject point0;
     public GameObject point1;
@@ -22,6 +25,8 @@ public class CurveBicycle : MonoBehaviour {
     public float[] curveSpeed;
 
     int curveQuaMode;
+
+    public CurveCamera curveCamera;
 
     // Use this for initialization
     void Start () {
@@ -48,7 +53,7 @@ public class CurveBicycle : MonoBehaviour {
     //現在の地点から次の地点への移動を線形補間で計算して代入する
     void Curve()
     {
-        time += Time.deltaTime; //時間を加算
+        time += Time.deltaTime * (initplayerSpeed/399.0f); //時間を加算
 
         if(time >= 1.0f)
         {
@@ -56,16 +61,17 @@ public class CurveBicycle : MonoBehaviour {
         }
 
         //移動処理
-        player.gameObject.transform.position = Bezier(point0.transform.position
-            ,point1.transform.position
-            ,point2.transform.position
-            ,point3.transform.position,
+        Vector3 newPos = Bezier(point0.transform.position
+            , point1.transform.position
+            , point2.transform.position
+            , point3.transform.position,
             time);
+        player.gameObject.transform.position = new Vector3(newPos.x,player.gameObject.transform.position.y, newPos.z);
 
         switch (curveQuaMode)
         {
             case 0:
-                rotTime += Time.deltaTime * curveSpeed[curveQuaMode];
+                rotTime += Time.deltaTime * curveSpeed[curveQuaMode] * (initplayerSpeed / 399.0f);
                 if (rotTime >= 1.0f)
                 {
                     rotTime = 1.0f;
@@ -75,7 +81,7 @@ public class CurveBicycle : MonoBehaviour {
                     point1.transform.rotation,rotTime);
                 break;
             case 1:
-                rotTime += Time.deltaTime * curveSpeed[curveQuaMode];
+                rotTime += Time.deltaTime * curveSpeed[curveQuaMode] * (initplayerSpeed / 399.0f);
                 if (rotTime >= 1.0f)
                 {
                     rotTime = 1.0f;
@@ -85,7 +91,7 @@ public class CurveBicycle : MonoBehaviour {
                     point2.transform.rotation, rotTime);
                 break;
             case 2:
-                rotTime += Time.deltaTime * curveSpeed[curveQuaMode];
+                rotTime += Time.deltaTime * curveSpeed[curveQuaMode] * (initplayerSpeed / 399.0f);
                 if (rotTime >= 1.0f)
                 {
                     rotTime = 1.0f;
@@ -100,11 +106,19 @@ public class CurveBicycle : MonoBehaviour {
         {
             rotTime = 0.0f;
             curveQuaMode++;
-            if(curveQuaMode > 2)
-            {
-                isCurve = false;
-                player.SetPlayerStatus(PlayerState.NORMAL);
-            }
+            //if(curveQuaMode > 2)
+            //{
+            //    isCurve = false;
+            //    player.SetPlayerStatus(PlayerState.NORMAL);
+            //}
+        }
+
+        if(time >= 1.0f)
+        {
+            isCurve = false;
+            player.SetPlayerStatus(PlayerState.NORMAL);
+            curveCamera.SetTargetPlayer(null);
+            player.CameraActivate(true);
         }
     }
 
@@ -127,6 +141,9 @@ public class CurveBicycle : MonoBehaviour {
         rotTime = 0;
         time = 0;
         curveQuaMode = 0;
+
+        curveCamera.SetTargetPlayer(player.gameObject);
+        player.CameraActivate(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -136,6 +153,8 @@ public class CurveBicycle : MonoBehaviour {
         {
             CurveStart();
             player.SetPlayerStatus(PlayerState.CURVE);
+
+            initplayerSpeed = player.GetPlayerSpeed();
 
             point0.transform.position = player.transform.position;
             point0.transform.rotation = player.transform.rotation;

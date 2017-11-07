@@ -14,6 +14,8 @@ public class SpeedMeter : MonoBehaviour {
     float meterAmount;              // メータの表示量
     float getSpeed;                 // 速度受け取るよ
 
+    public PlayerController player;
+
     // メータ表示量のセット
     public void SetSpeedMeter(float speed)
     {
@@ -46,7 +48,10 @@ public class SpeedMeter : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
+
+        getSpeed = player.GetPlayerSpeed();
+
         SetSpeedText(getSpeed);
         if (Input.GetKey(KeyCode.Space))
         {

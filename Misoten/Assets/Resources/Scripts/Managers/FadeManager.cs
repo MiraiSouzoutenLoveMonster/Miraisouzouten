@@ -46,7 +46,7 @@ public class FadeManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (mode != FADE_MODE.FADE_NONE)
         {
             // 画面を暗転化する

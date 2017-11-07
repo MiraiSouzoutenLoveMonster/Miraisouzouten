@@ -2338,7 +2338,6 @@ GameObject:
   - component: {fileID: 20106272729973160}
   - component: {fileID: 124827093506377776}
   - component: {fileID: 92797302931263244}
-  - component: {fileID: 81229703430029528}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -5411,7 +5410,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333028138131404}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1027.97, y: 15.178, z: -418.09}
+  m_LocalPosition: {x: 1027.97, y: 15.197, z: -418.09}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4727549884309412}
@@ -6181,7 +6180,7 @@ Camera:
     m_Bits: 768
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 0
@@ -11618,7 +11617,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1333028138131404}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -11638,13 +11637,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.056872893, y: 0.08773947, z: 0.15820904}
   m_Center: {x: 0.0012570203, y: -0.0025324852, z: 0.00046300888}
---- !u!81 &81229703430029528
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1659039322807608}
-  m_Enabled: 1
 --- !u!92 &92166659966823178
 Behaviour:
   m_ObjectHideFlags: 1
@@ -11714,13 +11706,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 54194039855340930}
-  movePower: 100
+  movePower: 4
+  horizontalMovePower: 75
+  rotXPower: 40
   collisionTime: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
   playerCamera: {fileID: 20106272729973160}
   playerNumber: 0
+  mic: {fileID: 0}
+  voicePower: 10
+  maxSpeed: 399
+  maxBaseSpeed: 60
 --- !u!124 &124393085065506644
 Behaviour:
   m_ObjectHideFlags: 1
