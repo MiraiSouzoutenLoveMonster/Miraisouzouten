@@ -14,6 +14,8 @@ public class CurveBicycle : MonoBehaviour {
     public float curvePower;              //カーブの際スピードを緩める倍率
     public float initplayerSpeed;         //カーブに入ったときのプレイヤーの速度
 
+    public int targetPlayerNumber;          //対象プレイヤーの番号を指定する
+
     //ベジェ曲線のポイント
     public GameObject point0;
     public GameObject point1;
@@ -148,16 +150,19 @@ public class CurveBicycle : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        //該当するオブジェクトと接触したらカーブを開始する
-        if(other.gameObject == player.gameObject)
+        if(other.gameObject.tag == "Player")
         {
-            CurveStart();
-            player.SetPlayerStatus(PlayerState.CURVE);
+            //該当するオブジェクトと接触したらカーブを開始する
+            if (other.gameObject.GetComponent<PlayerController>().GetPlayerNumber() == targetPlayerNumber)
+            {
+                CurveStart();
+                player.SetPlayerStatus(PlayerState.CURVE);
 
-            initplayerSpeed = player.GetPlayerSpeed();
+                initplayerSpeed = player.GetPlayerSpeed();
 
-            point0.transform.position = player.transform.position;
-            point0.transform.rotation = player.transform.rotation;
+                point0.transform.position = player.transform.position;
+                point0.transform.rotation = player.transform.rotation;
+            }
         }
     }
 
