@@ -9,49 +9,47 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1005521822397268}
+  m_RootGameObject: {fileID: 1870092107363330}
   m_IsPrefabParent: 1
---- !u!1 &1005521822397268
+--- !u!1 &1870092107363330
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4318433784270952}
-  - component: {fileID: 114679356688910868}
+  - component: {fileID: 4628136779659258}
+  - component: {fileID: 114313666199740722}
   m_Layer: 0
-  m_Name: GameTimeManager
+  m_Name: KeijibanClient
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4318433784270952
+--- !u!4 &4628136779659258
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005521822397268}
+  m_GameObject: {fileID: 1870092107363330}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1066, y: 0, z: 20.72}
+  m_LocalPosition: {x: 1008.38293, y: 16.09716, z: 83.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114679356688910868
+--- !u!114 &114313666199740722
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005521822397268}
+  m_GameObject: {fileID: 1870092107363330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad76e7c884c851a41ae857fe5728b47c, type: 3}
+  m_Script: {fileID: 11500000, guid: 14cc504e33163d546b1379aa0ceb4e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawTimeText:
-  - {fileID: 0}
-  - {fileID: 0}
-  IsDraw: 0
+  ipAddress: 192.168.2.9
+  port: 2001

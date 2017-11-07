@@ -228,6 +228,22 @@ public class SoundManager : MonoBehaviour{
         SESources[index].clip = null;
     }
 
+    //効果音が今どのような状態かを見る。存在していないものを指定した場合はエラーを返す
+    public static bool GetSEIsStop(int index)
+    {
+        if(index < 0)
+        {
+            return false;
+        }
+
+        if(SESources[index].time == SESources[index].clip.length)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     //声の再生
     public static void PlayVoice(int index,bool isLoop = false)
     {
@@ -291,6 +307,21 @@ public class SoundManager : MonoBehaviour{
 
         VoiceSources[index].Stop();
         VoiceSources[index].clip = null;
+    }
+
+    public static bool GetVoiceIsStop(int index)
+    {
+        if (index < 0)
+        {
+            return false;
+        }
+
+        if (VoiceSources[index].time == VoiceSources[index].clip.length)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     //

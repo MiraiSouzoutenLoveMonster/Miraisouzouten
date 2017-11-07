@@ -9,49 +9,58 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1005521822397268}
+  m_RootGameObject: {fileID: 1317717178724548}
   m_IsPrefabParent: 1
---- !u!1 &1005521822397268
+--- !u!1 &1317717178724548
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4318433784270952}
-  - component: {fileID: 114679356688910868}
+  - component: {fileID: 4711310518103440}
+  - component: {fileID: 114718595036123078}
+  - component: {fileID: 65652420065400912}
   m_Layer: 0
-  m_Name: GameTimeManager
+  m_Name: Goal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4318433784270952
+--- !u!4 &4711310518103440
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005521822397268}
+  m_GameObject: {fileID: 1317717178724548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1066, y: 0, z: 20.72}
+  m_LocalPosition: {x: 729, y: 0, z: 73.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114679356688910868
+--- !u!65 &65652420065400912
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317717178724548}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.71, y: 44.01, z: 77.16}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114718595036123078
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005521822397268}
+  m_GameObject: {fileID: 1317717178724548}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad76e7c884c851a41ae857fe5728b47c, type: 3}
+  m_Script: {fileID: 11500000, guid: 58b1a34e3b2f1934b9c5f05209c296b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawTimeText:
-  - {fileID: 0}
-  - {fileID: 0}
-  IsDraw: 0

@@ -26,5 +26,10 @@ public class CurveCamera : MonoBehaviour {
     public void SetTargetPlayer(GameObject target)
     {
         targetPlayer = target;
+
+        if(target == null)
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

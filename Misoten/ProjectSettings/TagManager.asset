@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Ground
   - Curve
+  - Obstacle
   layers:
   - Default
   - TransparentFX
