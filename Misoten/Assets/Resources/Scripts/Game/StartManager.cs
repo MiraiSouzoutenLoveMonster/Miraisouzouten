@@ -53,6 +53,8 @@ public class StartManager : MonoBehaviour {
                     }
                     // スタート演出終わったよ
                     startEnd = true;
+
+                    GameSceneManager.SetGamePhase(GamePhase.PHASE_GAME);
                 }
             }
         }

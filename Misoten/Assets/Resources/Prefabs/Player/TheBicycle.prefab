@@ -5147,7 +5147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360237197318910}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1028.2, y: 18.32, z: -417}
+  m_LocalPosition: {x: 1028.2, y: 15.2, z: -417}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4417439223995668}
@@ -11699,12 +11699,14 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
+  playerState: 0
   playerCamera: {fileID: 20547106693770586}
   playerNumber: 0
   mic: {fileID: 0}
   voicePower: 10
   maxSpeed: 399
   maxBaseSpeed: 60
+  isDebug: 1
 --- !u!114 &114396619985538770
 MonoBehaviour:
   m_ObjectHideFlags: 1

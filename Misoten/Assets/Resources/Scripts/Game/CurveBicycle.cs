@@ -39,6 +39,8 @@ public class CurveBicycle : MonoBehaviour {
         quas = new Quaternion[2];
         quas[0] = point1.transform.rotation;
         quas[1] = point2.transform.rotation;
+
+        curveCamera.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -120,6 +122,7 @@ public class CurveBicycle : MonoBehaviour {
             isCurve = false;
             player.SetPlayerStatus(PlayerState.NORMAL);
             curveCamera.SetTargetPlayer(null);
+            curveCamera.gameObject.SetActive(false);
             player.CameraActivate(true);
         }
     }
@@ -156,6 +159,7 @@ public class CurveBicycle : MonoBehaviour {
             if (other.gameObject.GetComponent<PlayerController>().GetPlayerNumber() == targetPlayerNumber)
             {
                 CurveStart();
+                curveCamera.gameObject.SetActive(true);
                 player.SetPlayerStatus(PlayerState.CURVE);
 
                 initplayerSpeed = player.GetPlayerSpeed();
