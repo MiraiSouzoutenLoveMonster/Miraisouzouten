@@ -65,6 +65,8 @@ public class GoalManager : MonoBehaviour {
 
         if(goalPlayerNum >= 2)
         {
+            //ここでゲーム終了を設定し、その後演出とリザルト画面への遷移を実行
+            GameSceneManager.SetGamePhase(GamePhase.PHASE_FINISH);
             //リザルト画面へ移行
             MultiFadeManager.SetNextFade("Result");
         }

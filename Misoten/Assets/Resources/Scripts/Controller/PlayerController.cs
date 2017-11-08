@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour {
     public float maxBaseSpeed;       //声量が0のときの最大速度
     float baseSpeed;                    //プレイヤーの基礎速度
 
+    public bool isDebug;
+
     // Use this for initialization
     void Start () {
         playerState = PlayerState.NORMAL;
@@ -56,6 +58,11 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+
+        if(GameSceneManager.GetGamePhase() == GamePhase.PHASE_READY)
+        {
+            return;
+        }
 
         // movePower++;
 
@@ -79,16 +86,50 @@ public class PlayerController : MonoBehaviour {
         if(baseSpeed <= maxBaseSpeed)
         {
             baseSpeed += Time.deltaTime * 3;
-        }       
-        
-        float rotX = Input.GetAxis("Horizontal");
+        }
 
-        AndroidInput input = AndroidInputManager.GetAndroidInput(playerNumber);
-        androidQuaternion = input.GetRotation();
+        Debug.Log(baseSpeed);
 
-        if(androidQuaternion.y >= -0.15f && androidQuaternion.y <= 0.15f)
+        float rotX;
+        AndroidInput input;
+        //エディタだったらデバッグ判定をとって操作系を判定
+        //実機だったらAndroidInput固定
+        if (Application.isEditor)
         {
-            androidQuaternion = new Quaternion(androidQuaternion.x, androidQuaternion.y*1, androidQuaternion.z, androidQuaternion.w);
+            if(isDebug)
+            {
+                if(playerNumber == 0)
+                {
+                    rotX = -Input.GetAxis("Horizontal");
+                }
+                else
+                {
+                    rotX = -Input.GetAxis("Horizontal2P");
+                }
+
+                androidQuaternion = new Quaternion(0, rotX*0.15f, 0, 1);
+            }
+            else
+            {
+                input = AndroidInputManager.GetAndroidInput(playerNumber);
+                androidQuaternion = input.GetRotation();
+
+                if (androidQuaternion.y >= -0.15f && androidQuaternion.y <= 0.15f)
+                {
+                    androidQuaternion = new Quaternion(androidQuaternion.x, androidQuaternion.y * 1, androidQuaternion.z, androidQuaternion.w);
+                }
+            }
+        }
+
+        else
+        {
+            input = AndroidInputManager.GetAndroidInput(playerNumber);
+            androidQuaternion = input.GetRotation();
+
+            if (androidQuaternion.y >= -0.15f && androidQuaternion.y <= 0.15f)
+            {
+                androidQuaternion = new Quaternion(androidQuaternion.x, androidQuaternion.y * 1, androidQuaternion.z, androidQuaternion.w);
+            }
         }
 
         switch (playerState)
@@ -146,7 +187,11 @@ public class PlayerController : MonoBehaviour {
     {
         if(other.gameObject.tag == "Obstacle")
         {
+            Obstacle obs = other.gameObject.GetComponent<Obstacle>();
 
+            float effect = obs.GetObstacleDownSpeed();
+
+            baseSpeed -= effect;
         }
     }
 
