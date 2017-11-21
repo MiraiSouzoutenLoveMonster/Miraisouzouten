@@ -39,6 +39,7 @@ public class CurveBicycle : MonoBehaviour {
         quas = new Quaternion[2];
         quas[0] = point1.transform.rotation;
         quas[1] = point2.transform.rotation;
+        initplayerSpeed = 270;
 
         curveCamera.gameObject.SetActive(false);
     }
@@ -57,9 +58,8 @@ public class CurveBicycle : MonoBehaviour {
     //現在の地点から次の地点への移動を線形補間で計算して代入する
     void Curve()
     {
-        time += Time.deltaTime * (initplayerSpeed/399.0f); //時間を加算
-
-        if(time >= 1.0f)
+        time += Time.deltaTime * ((initplayerSpeed)/399.0f); //時間を加算
+        if (time >= 1.0f)
         {
             time = 1.0f;
         }
@@ -162,7 +162,9 @@ public class CurveBicycle : MonoBehaviour {
                 curveCamera.gameObject.SetActive(true);
                 player.SetPlayerStatus(PlayerState.CURVE);
 
-                initplayerSpeed = player.GetPlayerSpeed();
+                //initplayerSpeed = player.GetPlayerSpeed();
+
+                Debug.Log("InitSpeed："+initplayerSpeed);
 
                 point0.transform.position = player.transform.position;
                 point0.transform.rotation = player.transform.rotation;

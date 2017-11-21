@@ -5,7 +5,8 @@ using UnityEngine;
 //ゲームフェーズ
 public enum GamePhase
 {
-    PHASE_READY = 0,
+    PHASE_CAMERAPERFORMANCE = 0,
+    PHASE_READY,
     PHASE_GAME,
     PHASE_FINISH
 }
@@ -14,25 +15,41 @@ public class GameSceneManager : MonoBehaviour {
     public string nextScene = "Result";
     public StartManager startManager;
 
-    static GamePhase phase = GamePhase.PHASE_READY;//ゲームのフェーズ
+    static GamePhase phase = GamePhase.PHASE_CAMERAPERFORMANCE;//ゲームのフェーズ
+
+    public string gameMainBGM;
 
     // Use this for initialization
     void Start () {
-        phase = GamePhase.PHASE_READY;
-        //startManager.SetStartActive(false);
-        startManager.SetStartActive(true);
+        phase = GamePhase.PHASE_CAMERAPERFORMANCE;
+        startManager.SetStartActive(false);
+        SoundManager.PlayBGM("gameBGM_totyu");
+        //startManager.SetStartActive(true);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.A))
+
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    //MultiFadeManager.SetNextFade(nextScene,0);
+
+        //    KeijibanClient.SendData("2");
+        //}
+
+        if(phase == GamePhase.PHASE_READY)
         {
             startManager.SetStartActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if(phase == GamePhase.PHASE_GAME)
         {
-            MultiFadeManager.SetNextFade(nextScene,0);
+            SoundManager.PlayBGM(gameMainBGM);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return))
+        {
+            MultiFadeManager.SetNextFade("Result");
         }
 	}
 

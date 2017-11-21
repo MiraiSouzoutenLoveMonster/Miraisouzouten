@@ -10,10 +10,12 @@ public class StartManager : MonoBehaviour {
     public Color waitColor;                             // 待機の時の色だよ
     public Color startColor;                            // スタートする時の色だよ
 
-    int time;                               // 時間だよ
+    float time;                               // 時間だよ
     int target;                             // 光る対象だよ
     bool start;                             // 開始するタイミングだよ
     bool startEnd;                          // 開始したあとだよ
+
+    public float deleteTime;                //信号の描画を切る時間
 
 
 	// Use this for initialization
@@ -61,14 +63,12 @@ public class StartManager : MonoBehaviour {
         // 信号全部光ったよ
         else
         {
-            time++;
+            time += Time.deltaTime;
 
             // 光ったあと少したったら消すよ
-            if( time > 60 )
+            if( time >= deleteTime)
             {
-                startImg[0].SetActive(false);
-                startImg[1].SetActive(false);
-                gameObject.SetActive(false);
+                SetStartActive(false);
             }
         }
 	}
