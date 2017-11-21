@@ -31,7 +31,6 @@ public class GoalManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.B))
         {
             goalImage[1].sprite = goalSprite;
-
         }
 
         // ゴールしたら画像が貼ってあるよ
@@ -62,6 +61,8 @@ public class GoalManager : MonoBehaviour {
         goalImage[playerNumber].sprite = goalSprite;
 
         goalPlayerNum++;
+
+        player.SetPlayerStatus(PlayerState.GOAL);
 
         if(goalPlayerNum >= 2)
         {

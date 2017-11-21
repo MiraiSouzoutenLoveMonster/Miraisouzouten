@@ -8,6 +8,9 @@ public enum PlayerState
     SLIP,
     COLLISION,
     CURVE,
+    GOAL,
+    GOALACTION,
+    FINISH,
     MAX
 }
 
@@ -41,8 +44,11 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public float maxBaseSpeed;       //声量が0のときの最大速度
     float baseSpeed;                    //プレイヤーの基礎速度
+    float effectiveSpeed;            //効果によるスピード
 
     public bool isDebug;
+
+    Vector3 goalVector; //ゴールした時のプレイヤーの向き
 
     // Use this for initialization
     void Start () {
@@ -54,14 +60,19 @@ public class PlayerController : MonoBehaviour {
         defaultQuaternion = transform.rotation;
 
         baseSpeed = 50;
+
+        effectiveSpeed = 0;
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        if(GameSceneManager.GetGamePhase() == GamePhase.PHASE_READY)
+        if(GameSceneManager.GetGamePhase() != GamePhase.PHASE_GAME)
         {
-            return;
+            if(playerState != PlayerState.GOAL)
+            {
+                return;
+            }        
         }
 
         // movePower++;
@@ -87,8 +98,6 @@ public class PlayerController : MonoBehaviour {
         {
             baseSpeed += Time.deltaTime * 3;
         }
-
-        Debug.Log(baseSpeed);
 
         float rotX;
         AndroidInput input;
@@ -131,13 +140,14 @@ public class PlayerController : MonoBehaviour {
                 androidQuaternion = new Quaternion(androidQuaternion.x, androidQuaternion.y * 1, androidQuaternion.z, androidQuaternion.w);
             }
         }
-
+        float loudness;
+        Vector3 velocity;
         switch (playerState)
         {
             case PlayerState.NORMAL:
-                float loudness = mic.GetLoudness(playerNumber);
+                loudness = mic.GetLoudness(playerNumber);
                 //float loudness = 10.0f;
-                Vector3 velocity = transform.forward * (baseSpeed + (maxSpeed - maxBaseSpeed) * (loudness / voicePower));
+                velocity = transform.forward * ((baseSpeed + effectiveSpeed) + (maxSpeed - maxBaseSpeed) * (loudness / voicePower));
                 //Vector3 velocity = transform.forward * baseSpeed * movePower;
                 rigid.velocity = velocity;
                 playerSpeed = rigid.velocity.magnitude;
@@ -148,13 +158,29 @@ public class PlayerController : MonoBehaviour {
                 break;
 
             case PlayerState.CURVE:
-                
+                break;
+
+            case PlayerState.GOAL:
+                //ゴール時の処理
+                loudness = mic.GetLoudness(playerNumber);
+                //float loudness = 10.0f;
+                velocity = goalVector * ((baseSpeed + effectiveSpeed) + (maxSpeed - maxBaseSpeed) * (loudness / voicePower));
+                //Vector3 velocity = transform.forward * baseSpeed * movePower;
+                rigid.velocity = velocity;
+                playerSpeed = rigid.velocity.magnitude;
+                rigid.AddForce(rigid.velocity, ForceMode.Acceleration);
+                break;
+
+            case PlayerState.GOALACTION:
+                //教会前での演出
+                playerCamera.gameObject.SetActive(false);
+                rigid.velocity = Vector3.zero;
                 break;
         }
 
         if (playerState == PlayerState.CURVE)
         {
-            playerSpeed = 45.0f;
+            //playerSpeed = 45.0f;
         }
 
         ResultWork.SetMaxSpeed(playerNumber,playerSpeed);
@@ -181,18 +207,23 @@ public class PlayerController : MonoBehaviour {
     {
         playerState = state;
         defaultQuaternion = transform.rotation;
+
+        if(state == PlayerState.GOAL)
+        {
+            goalVector = transform.forward;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Obstacle")
+        if(other.gameObject.tag == "Item")
         {
-            Obstacle obs = other.gameObject.GetComponent<Obstacle>();
+            Item obs = other.gameObject.GetComponent<Item>();
 
-            float effect = obs.GetObstacleDownSpeed();
-
-            baseSpeed -= effect;
+            obs.Effect(this);
         }
+
+        
     }
 
     public Rigidbody GetRigidBody()
@@ -217,5 +248,25 @@ public class PlayerController : MonoBehaviour {
             playerSpeed = 399.0f;
         }
         return playerSpeed;
+    }
+
+    public float GetPlayerBaseSpeed()
+    {
+        return baseSpeed;
+    }
+
+    public void SetPlayerBaseSpeed(float speed)
+    {
+        baseSpeed = speed;
+    }
+
+    public float GetPlayerEffectiveSpeed()
+    {
+        return effectiveSpeed;
+    }
+
+    public void SetPlayerEffectiveSpeed(float speed)
+    {
+        effectiveSpeed = speed;
     }
 }

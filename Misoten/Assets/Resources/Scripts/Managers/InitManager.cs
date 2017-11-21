@@ -7,6 +7,10 @@ public class InitManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        for(int i = 0;i < 2; i++)
+        {
+            Display.displays[i].Activate();
+        }
     }
 
     // Update is called once per frame

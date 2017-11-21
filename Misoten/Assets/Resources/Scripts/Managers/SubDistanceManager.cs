@@ -25,6 +25,8 @@ public class SubDistanceManager : MonoBehaviour {
 
         float distance = (player1.transform.position - player2.transform.position).sqrMagnitude;
 
+        distance /= 1000.0f;
+
         if (distance <= underLine)
         {
             distance = 0.0f;

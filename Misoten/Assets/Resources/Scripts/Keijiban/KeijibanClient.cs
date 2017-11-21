@@ -14,21 +14,25 @@ public class KeijibanClient : MonoBehaviour {
     public int port;         //ポート番号
 
     TcpClient tcp;
-    NetworkStream ns;
+    static NetworkStream ns;
 
 	// Use this for initialization
 	void Start () {
         tcp = new TcpClient(ipAddress,port);
 
         ns = tcp.GetStream();
-
-        byte[] sendBytes = Encoding.UTF8.GetBytes("yaju.jpg");
-
-        ns.Write(sendBytes,0, sendBytes.Length);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+        //どちらのプレイヤーが優勢かを判断しデータを送信する
+        //SendData(0);
 	}
+
+    static public void SendData(string data)
+    {
+        byte[] sendBytes = Encoding.UTF8.GetBytes(data);
+
+        ns.Write(sendBytes,0,sendBytes.Length);
+    }
 }
