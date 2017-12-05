@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222184878169794818}
   - component: {fileID: 114911602330146594}
   - component: {fileID: 114065538588229688}
+  - component: {fileID: 114866553919293278}
   m_Layer: 5
   m_Name: SpeedMeter
   m_TagString: Untagged
@@ -105,6 +106,20 @@ MonoBehaviour:
   m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114866553919293278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1678641736448434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bac52c78d74c0c439160702e3446a11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  micInput: {fileID: 0}
+  display: 2
+  meter: {fileID: 114294334245885812}
 --- !u!114 &114911602330146594
 MonoBehaviour:
   m_ObjectHideFlags: 1

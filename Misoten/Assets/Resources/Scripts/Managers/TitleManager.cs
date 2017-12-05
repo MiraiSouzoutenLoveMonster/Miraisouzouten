@@ -5,17 +5,20 @@ public class TitleManager : MonoBehaviour {
 
     public string nextScene = "Game";
 
+    public string bgmName;
+    public string toGameSeName;
+
     // Use this for initialization
     void Start () {
         SoundManager.StopBGM();
-        SoundManager.PlayBGM("gameBGM_totyu");
+        SoundManager.PlayBGM(bgmName);
     }
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Return))
         {
-            SoundManager.PlaySE("goto_game_kansei_aud");
+            SoundManager.PlaySE(toGameSeName);
             MultiFadeManager.SetNextFade(nextScene,0);
         }
 	}

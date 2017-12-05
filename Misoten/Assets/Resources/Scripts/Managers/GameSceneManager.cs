@@ -17,13 +17,14 @@ public class GameSceneManager : MonoBehaviour {
 
     static GamePhase phase = GamePhase.PHASE_CAMERAPERFORMANCE;//ゲームのフェーズ
 
+    public string gameStartBgmName;
     public string gameMainBGM;
 
     // Use this for initialization
     void Start () {
         phase = GamePhase.PHASE_CAMERAPERFORMANCE;
         startManager.SetStartActive(false);
-        SoundManager.PlayBGM("gameBGM_totyu");
+        SoundManager.PlayBGM(gameStartBgmName);
         //startManager.SetStartActive(true);
     }
 	

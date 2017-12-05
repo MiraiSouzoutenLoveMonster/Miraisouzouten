@@ -60,9 +60,10 @@ public class MultiFadeManager : MonoBehaviour {
         {
             canvas[i] = Instantiate(fadeCanvas);                // キャンバス作ったよ
             canvas[i].transform.parent = transform;             // マネージャーの子供にしたよ
-            canvas[i].GetComponent<Canvas>().targetDisplay = i; // キャンバスの表示対象決めたよ
+            canvas[i].GetComponent<Canvas>().targetDisplay = i+1; // キャンバスの表示対象決めたよ
             child[i] = canvas[i].gameObject.GetComponentInChildren<Image>();    // イメージ覚えておくよ
             color = child[i].color;                                             // イメージの色覚えておくよ
+            
         }
 
     }

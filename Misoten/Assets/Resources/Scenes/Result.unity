@@ -457,7 +457,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 1
+  m_TargetDisplay: 2
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -553,7 +553,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
 --- !u!224 &270206751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1949,7 +1949,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_TargetDisplay: 1
+  m_TargetDisplay: 2
 --- !u!224 &819914429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2401,7 +2401,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -2786,7 +2786,7 @@ MonoBehaviour:
   playerNumber: 0
   image: {fileID: 1621186028}
   winSprite: {fileID: 21300000, guid: 84bba2eba6d7c4740bbe237b9bbb7635, type: 3}
-  loseSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  loseSprite: {fileID: 21300000, guid: d2503b934a8a00b498b4ccf2a1e81548, type: 3}
 --- !u!1 &1551097499
 GameObject:
   m_ObjectHideFlags: 0
@@ -3112,6 +3112,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScene: Title
+  resultStartBGMName: RESULT_BGM01_01_aud
+  resultMainBGMName: RESULT_BGM02_01_aud
+  toTitleSeName: goto_title_aud
 --- !u!4 &1849731555
 Transform:
   m_ObjectHideFlags: 0
@@ -3174,7 +3177,7 @@ MonoBehaviour:
   playerNumber: 1
   image: {fileID: 451594011}
   winSprite: {fileID: 21300000, guid: bacff924100b20f49b54851f7dae2b2c, type: 3}
-  loseSprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  loseSprite: {fileID: 21300000, guid: 784ba267bc0e3d7469348cbd0a658e47, type: 3}
 --- !u!1 &2041315681
 GameObject:
   m_ObjectHideFlags: 0

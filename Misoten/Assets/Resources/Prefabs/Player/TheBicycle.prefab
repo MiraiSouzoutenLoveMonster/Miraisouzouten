@@ -5261,7 +5261,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360237197318910}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -57, y: 1.1, z: 15.9}
+  m_LocalPosition: {x: -57, y: 1.1, z: 10.03}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4417439223995668}
@@ -6302,7 +6302,7 @@ Camera:
     m_Bits: 768
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 2
   m_TargetEye: 3
   m_HDR: 0
   m_AllowMSAA: 0
@@ -6338,7 +6338,7 @@ Camera:
     m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 2
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -12047,11 +12047,17 @@ MonoBehaviour:
     m_Bits: 512
   playerState: 0
   playerCamera: {fileID: 20547106693770586}
-  playerNumber: 0
+  playerNumber: 1
   mic: {fileID: 0}
   voicePower: 10
   maxSpeed: 399
   maxBaseSpeed: 60
+  accelEffectActiveSpeed: 120
+  accelEffect: {fileID: 1501955109276952, guid: 1d1149ecddf1b004ea6047c2808c780f,
+    type: 2}
+  accelEffectSEName: wind02_aud
+  collisionPlayerSeName: bicycle_pedal_01_aud
+  collisionWallSeName: wall_attack_02_aud
   isDebug: 1
 --- !u!114 &114396619985538770
 MonoBehaviour:

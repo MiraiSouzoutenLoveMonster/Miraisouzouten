@@ -10,8 +10,11 @@ public class GoalManager : MonoBehaviour {
     public Image[] goalImage = new Image[2];    // ゴールの表示領域だよ
     public Vector3 maxScale;                    // スケールの最大値だよ
     public int addTime;                         // 加算に使う時間だよ
+    public string goalSeName;
+    public string toResultSeName;
     int[] time = new int[2];                    // 加算した時間だよ
     Vector3 addScale;                           // 加算するスケールの値だよ
+    public PlayerController[] players;
 
 	// Use this for initialization
 	void Start () {
@@ -49,7 +52,17 @@ public class GoalManager : MonoBehaviour {
                 }
             }
         }
-	}
+
+        //全プレイヤーが教会前についたらリザルトへ
+        if (players[0].GetPlayerState() == PlayerState.FINISH && players[1].GetPlayerState() == PlayerState.FINISH)
+        {
+            //ここでゲーム終了を設定し、その後演出とリザルト画面への遷移を実行
+            GameSceneManager.SetGamePhase(GamePhase.PHASE_FINISH);
+            //リザルト画面へ移行
+            MultiFadeManager.SetNextFade("Result");
+            SoundManager.PlaySE(toResultSeName);
+        }
+    }
 
     //ゴールした時の処理
     void Goal(PlayerController player)
@@ -64,13 +77,8 @@ public class GoalManager : MonoBehaviour {
 
         player.SetPlayerStatus(PlayerState.GOAL);
 
-        if(goalPlayerNum >= 2)
-        {
-            //ここでゲーム終了を設定し、その後演出とリザルト画面への遷移を実行
-            GameSceneManager.SetGamePhase(GamePhase.PHASE_FINISH);
-            //リザルト画面へ移行
-            MultiFadeManager.SetNextFade("Result");
-        }
+        //ゴールした時の音を鳴らす
+        SoundManager.PlaySE(goalSeName);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -5,9 +5,9 @@ using UnityEngine;
 public class InitManager : MonoBehaviour
 {
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        for(int i = 0;i < 2; i++)
+        for (int i = 0; i < Display.displays.Length; i++)
         {
             Display.displays[i].Activate();
         }

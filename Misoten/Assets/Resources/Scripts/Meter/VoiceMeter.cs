@@ -6,7 +6,6 @@ using UnityEngine.UI;               // UIを使用可能にする
 public class VoiceMeter : MonoBehaviour {
     public MicInput micInput;   // マイクインプット
     public int display;         // ディスプレイ番号
-    public Image back;          // 背景
     public Image meter;         // メータ
 
     float meterAmountSplit;     // メータ表示の分割数

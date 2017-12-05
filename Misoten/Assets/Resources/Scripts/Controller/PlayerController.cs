@@ -46,6 +46,14 @@ public class PlayerController : MonoBehaviour {
     float baseSpeed;                    //プレイヤーの基礎速度
     float effectiveSpeed;            //効果によるスピード
 
+    public float accelEffectActiveSpeed;
+    public GameObject accelEffect;  //加速エフェクト
+    public string accelEffectSEName;
+    int accelEffectSEIndex;
+
+    public string collisionPlayerSeName;
+    public string collisionWallSeName;
+
     public bool isDebug;
 
     Vector3 goalVector; //ゴールした時のプレイヤーの向き
@@ -155,9 +163,22 @@ public class PlayerController : MonoBehaviour {
                 rigid.AddForce(rigid.velocity, ForceMode.Acceleration);
 
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,defaultQuaternion.eulerAngles.z + rotXPower * androidQuaternion.y);
+
+                if (playerSpeed >= accelEffectActiveSpeed)
+                {
+                    accelEffect.SetActive(true);
+                    accelEffectSEIndex = SoundManager.PlaySE(accelEffectSEName,true);
+                }
+                else
+                {
+                    accelEffect.SetActive(false);
+                    SoundManager.StopSE(accelEffectSEIndex);
+                }
                 break;
 
             case PlayerState.CURVE:
+                accelEffect.SetActive(false);
+                SoundManager.StopSE(accelEffectSEIndex);
                 break;
 
             case PlayerState.GOAL:
@@ -169,6 +190,8 @@ public class PlayerController : MonoBehaviour {
                 rigid.velocity = velocity;
                 playerSpeed = rigid.velocity.magnitude;
                 rigid.AddForce(rigid.velocity, ForceMode.Acceleration);
+                accelEffect.SetActive(false);
+                SoundManager.StopSE(accelEffectSEIndex);
                 break;
 
             case PlayerState.GOALACTION:
@@ -214,6 +237,20 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.transform.tag == "Wall")
+        {
+            //壁との衝突音
+            SoundManager.PlaySE(collisionWallSeName);
+        }
+        if(collision.transform.tag == "Player")
+        {
+            //他プレイヤーとの衝突音
+            SoundManager.PlaySE(collisionPlayerSeName);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag == "Item")
@@ -222,7 +259,6 @@ public class PlayerController : MonoBehaviour {
 
             obs.Effect(this);
         }
-
         
     }
 

@@ -119,7 +119,7 @@ public class SoundManager : MonoBehaviour{
         BGMSource.Play();
     }
 
-    public static void PlayBGM(string fileName)
+    public static void PlayBGM(string fileName,bool loop = true)
     {
         if(BGMSource == null)
         {
@@ -143,6 +143,7 @@ public class SoundManager : MonoBehaviour{
         BGMSource.Stop();
         BGMSource.clip = BGM[index];
         BGMSource.Play();
+        BGMSource.loop = loop;
     }
 
     //BGM停止
@@ -224,8 +225,29 @@ public class SoundManager : MonoBehaviour{
             return;
         }
 
+        if(!SESources[index].isPlaying)
+        {
+            return;
+        }
+
         SESources[index].Stop();
         SESources[index].clip = null;
+    }
+
+    //BGMが止まっている状態かを確認する
+    public static bool GetBGMIsStop()
+    {
+        if(BGMSource.clip == null)
+        {
+            return true;
+        }
+
+        if(!BGMSource.isPlaying)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     //効果音が今どのような状態かを見る。存在していないものを指定した場合はエラーを返す

@@ -11,6 +11,7 @@ TagManager:
   - Curve
   - Obstacle
   - Item
+  - Train
   layers:
   - Default
   - TransparentFX
