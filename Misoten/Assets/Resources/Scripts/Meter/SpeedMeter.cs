@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;               // UIを使用可能にする
 
 public class SpeedMeter : MonoBehaviour {
-    public Image speedMeter;        // 速度メータ
     public Text speedText;          // 速度テキスト
     public float maxSpeed;          // 最大速度
 
@@ -20,7 +19,6 @@ public class SpeedMeter : MonoBehaviour {
     public void SetSpeedMeter(float speed)
     {
         meterAmount = speed * meterAmountSplit + 0.065f;
-        speedMeter.fillAmount = meterAmount;
     }
     // テキストの数値のセット
     public void SetSpeedText(float speed)

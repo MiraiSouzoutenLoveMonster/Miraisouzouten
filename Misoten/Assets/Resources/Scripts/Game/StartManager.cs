@@ -16,7 +16,7 @@ public class StartManager : MonoBehaviour {
     bool startEnd;                          // 開始したあとだよ
 
     public float deleteTime;                //信号の描画を切る時間
-
+    public string gameStartSeName;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +53,9 @@ public class StartManager : MonoBehaviour {
                         player1Light[i].color = startColor;        // 色変わるよ
                         player2Light[i].color = startColor;        // 色変わるよ
                     }
+
+                    SoundManager.PlaySE(gameStartSeName);
+
                     // スタート演出終わったよ
                     startEnd = true;
 

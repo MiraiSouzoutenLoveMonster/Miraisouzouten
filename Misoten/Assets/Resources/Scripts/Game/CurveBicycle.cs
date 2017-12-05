@@ -30,6 +30,10 @@ public class CurveBicycle : MonoBehaviour {
 
     public CurveCamera curveCamera;
 
+    public GameObject centerPoint;
+
+    bool isRightCurve;
+
     // Use this for initialization
     void Start () {
         time = 0;
@@ -158,6 +162,13 @@ public class CurveBicycle : MonoBehaviour {
             //該当するオブジェクトと接触したらカーブを開始する
             if (other.gameObject.GetComponent<PlayerController>().GetPlayerNumber() == targetPlayerNumber)
             {
+                //中心点が設定されている場合はそれを基準に右折か左折かを決定
+
+                if(isRightCurve)
+                {
+                    //point0.transform.position = new Vector3(point0.transform.position.x, point0.transform.position.y, -point0.transform.position.z);
+                }
+
                 CurveStart();
                 curveCamera.gameObject.SetActive(true);
                 player.SetPlayerStatus(PlayerState.CURVE);
