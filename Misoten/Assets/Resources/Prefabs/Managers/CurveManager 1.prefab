@@ -13311,7 +13311,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1815968336154704}
   point1: {fileID: 1329450939551220}
   point2: {fileID: 1328508688680808}
@@ -13706,7 +13706,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1946668329105982}
   point1: {fileID: 1830525412123844}
   point2: {fileID: 1880049157271560}
@@ -14322,7 +14322,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1946247124603030}
   point1: {fileID: 1455665361979752}
   point2: {fileID: 1352207418382796}
@@ -14567,7 +14567,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1030543006129380}
   point1: {fileID: 1186673222828996}
   point2: {fileID: 1423550197590054}
@@ -14852,7 +14852,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1683942333834286}
   point1: {fileID: 1099611357760944}
   point2: {fileID: 1506409012339100}
@@ -15323,7 +15323,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1549352344147764}
   point1: {fileID: 1112779205224022}
   point2: {fileID: 1895357273239828}
@@ -15528,7 +15528,7 @@ MonoBehaviour:
   player: {fileID: 0}
   curvePower: 0
   initplayerSpeed: 0
-  targetPlayerNumber: 0
+  targetPlayerNumber: 1
   point0: {fileID: 1215930600770716}
   point1: {fileID: 1278834072735390}
   point2: {fileID: 1562764647255050}

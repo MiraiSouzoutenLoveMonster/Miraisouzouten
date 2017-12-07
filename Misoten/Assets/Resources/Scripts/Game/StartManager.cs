@@ -60,6 +60,7 @@ public class StartManager : MonoBehaviour {
                     startEnd = true;
 
                     GameSceneManager.SetGamePhase(GamePhase.PHASE_GAME);
+                    KeijibanClient.SendData("yaju.jpg");
                 }
             }
         }

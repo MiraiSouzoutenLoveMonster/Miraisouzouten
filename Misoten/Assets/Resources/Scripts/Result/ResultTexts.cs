@@ -18,8 +18,13 @@ public class ResultTexts : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        time = 0;                                   // 初期化だよ
+        time = 0;
+        rankingList = new List<int>();// 初期化だよ
         rankingList = ResultWork.GetRanking();      // ランキングのリストもってくるよ
+        if(rankingList == null)
+        {
+            rankingList = new List<int>();
+        }
         rank = ResultWork.GetRank(playerNumber);    // プレイヤーのランクをもってくるよ
         string str;                                 // 文字列だよ
 
@@ -43,6 +48,7 @@ public class ResultTexts : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // ランキング内なら
+        Debug.Log(rankingList.Count);
         if (rank < rankingList.Count)
         {
             time++;

@@ -26,6 +26,7 @@ public class GameSceneManager : MonoBehaviour {
         startManager.SetStartActive(false);
         SoundManager.PlayBGM(gameStartBgmName);
         //startManager.SetStartActive(true);
+        KeijibanClient.SendData("金賞の風格OGSWRBB.png");
     }
 	
 	// Update is called once per frame

@@ -25,7 +25,7 @@ public class SpeedMeter : MonoBehaviour {
     {
         int convert = (int)speed;
         speedText.text = (convert).ToString();
-        SetSpeedMeter(convert);
+        //SetSpeedMeter(convert);
     }
     // 速度セットするよ
     public void SetSpeed(float speed)
