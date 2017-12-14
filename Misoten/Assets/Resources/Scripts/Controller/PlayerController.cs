@@ -239,12 +239,12 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.transform.tag == "Wall")
+        if(collision.transform.tag == "Wall" && playerState == PlayerState.NORMAL)
         {
             //壁との衝突音
             SoundManager.PlaySE(collisionWallSeName);
         }
-        if(collision.transform.tag == "Player")
+        if(collision.transform.tag == "Player" && playerState == PlayerState.NORMAL)
         {
             //他プレイヤーとの衝突音
             SoundManager.PlaySE(collisionPlayerSeName);
@@ -253,7 +253,7 @@ public class PlayerController : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Item")
+        if(other.gameObject.tag == "Item" && playerState == PlayerState.NORMAL)
         {
             Item obs = other.gameObject.GetComponent<Item>();
 
@@ -270,6 +270,11 @@ public class PlayerController : MonoBehaviour {
     public void CameraActivate(bool active)
     {
         playerCamera.gameObject.SetActive(active);
+    }
+
+    public Camera GetPlayerCamera()
+    {
+        return playerCamera;
     }
 
     public int GetPlayerNumber()

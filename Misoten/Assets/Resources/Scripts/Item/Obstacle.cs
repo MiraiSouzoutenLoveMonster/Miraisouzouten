@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Obstacle : Item {
     public float downSpeed = 0.1f;
+    public GameObject particle;
 
 	// Use this for initialization
 	void Start () {
@@ -28,8 +29,17 @@ public class Obstacle : Item {
         float speed = targetPlayer.GetPlayerBaseSpeed();
 
         speed -= downSpeed;
+        if(speed <= 0)
+        {
+            speed = 0;
+        }
 
         targetPlayer.SetPlayerBaseSpeed(speed);
+
+        if(particle != null)
+        {
+            GameObject obj = Instantiate(particle, targetPlayer.transform);
+        }
 
         Destroy(gameObject);
     }

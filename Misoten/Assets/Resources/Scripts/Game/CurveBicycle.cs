@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CurveBicycle : MonoBehaviour {
     public PlayerController player;              //プレイヤーのオブジェクト。目標地点の1番最初のものと同一オブジェクト
-
+    Camera targetCamera = null;                           //プレイヤーについているカメラ。一人称視点の場合はプレイヤーが傾いて見えるように回転量を計算し加算する
     //public GameObject rPoint;
 
     float time;                     //カーブの割合。0～1の間の数値になる
@@ -75,7 +75,8 @@ public class CurveBicycle : MonoBehaviour {
             , point3.transform.position,
             time);
         player.gameObject.transform.position = new Vector3(newPos.x,player.gameObject.transform.position.y, newPos.z);
-
+        Quaternion oldRot;
+        oldRot = targetCamera.transform.localRotation;
         switch (curveQuaMode)
         {
             case 0:
@@ -109,6 +110,9 @@ public class CurveBicycle : MonoBehaviour {
                     point3.transform.rotation, rotTime);
                 break;
         }
+        //newRot = player.transform.rotation;
+        //Quaternion subRot = oldRot - newRot;
+        //targetCamera.transform.localRotation = oldRot;
 
         if (rotTime >= 1.0f)
         {
@@ -152,7 +156,7 @@ public class CurveBicycle : MonoBehaviour {
         curveQuaMode = 0;
 
         curveCamera.SetTargetPlayer(player.gameObject);
-        player.CameraActivate(false);
+        //player.CameraActivate(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -170,8 +174,9 @@ public class CurveBicycle : MonoBehaviour {
                 }
 
                 CurveStart();
-                curveCamera.gameObject.SetActive(true);
+                //curveCamera.gameObject.SetActive(true);
                 player.SetPlayerStatus(PlayerState.CURVE);
+                //initplayerSpeed = player.GetPlayerSpeed()*3.5f;
 
                 //initplayerSpeed = player.GetPlayerSpeed();
 
@@ -179,6 +184,7 @@ public class CurveBicycle : MonoBehaviour {
 
                 point0.transform.position = player.transform.position;
                 point0.transform.rotation = player.transform.rotation;
+                targetCamera = player.GetPlayerCamera();
             }
         }
     }

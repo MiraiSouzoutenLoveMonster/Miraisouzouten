@@ -15,6 +15,7 @@ public class GameSceneManager : MonoBehaviour {
     public string nextScene = "Result";
     public StartManager startManager;
 
+    public GamePhase startPhase = GamePhase.PHASE_CAMERAPERFORMANCE;
     static GamePhase phase = GamePhase.PHASE_CAMERAPERFORMANCE;//ゲームのフェーズ
 
     public string gameStartBgmName;
@@ -22,11 +23,11 @@ public class GameSceneManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        phase = GamePhase.PHASE_CAMERAPERFORMANCE;
+        phase = startPhase;
         startManager.SetStartActive(false);
         SoundManager.PlayBGM(gameStartBgmName);
         //startManager.SetStartActive(true);
-        KeijibanClient.SendData("金賞の風格OGSWRBB.png");
+        //KeijibanClient.SendData("金賞の風格OGSWRBB.png");
     }
 	
 	// Update is called once per frame

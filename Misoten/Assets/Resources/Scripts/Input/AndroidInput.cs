@@ -74,7 +74,7 @@ public class AndroidInput : MonoBehaviour {
         return rotation;
     }
 
-    // 押された状態取得だよ
+    // トリガー判定の取得
     public bool GetDown()
     {
         return down;
