@@ -7,7 +7,7 @@ public class GoalAction : MonoBehaviour {
     PlayerController[] players;
 
     Transform[] initPlayerPosition; //回転開始時のプレイヤーの座標
-    public GameObject target;   //回転軸の目標値
+    public GameObject[] target;   //回転軸の目標値
 
     public float targetRotationPower; //回転軸の補間の速度
     public float targetMovePower;     //移動の補間の速度
@@ -55,9 +55,9 @@ public class GoalAction : MonoBehaviour {
                 {
                     moveTime = 1;
                 }
-
-                players[i].transform.position = Vector3.Lerp(initPlayerPosition[i].position,target.transform.position,moveTime);
-                players[i].transform.rotation = Quaternion.Slerp(initPlayerPosition[i].rotation,target.transform.rotation,rotTime);
+                int playerNum = players[i].GetPlayerNumber();
+                players[i].transform.position = Vector3.Lerp(initPlayerPosition[i].position,target[playerNum].transform.position,moveTime);
+                players[i].transform.rotation = Quaternion.Slerp(initPlayerPosition[i].rotation,target[playerNum].transform.rotation,rotTime);
             }
         }
     }

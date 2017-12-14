@@ -217,9 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mic:
   - audio: {fileID: 82395820378065454}
-    deviceName: Mic1
+    deviceName: Mic
   - audio: {fileID: 82435707024397406}
-    deviceName: Mic2
+    deviceName: Mic
   sensitivity: 10
   lastLoudnessInfluence: 0.95
   showGUI: 1

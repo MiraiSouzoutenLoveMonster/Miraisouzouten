@@ -5,7 +5,7 @@ using UnityEngine.UI;               // UIを使用可能にする
 
 public class VoiceMeter : MonoBehaviour {
     public MicInput micInput;   // マイクインプット
-    public int display;         // ディスプレイ番号
+    public int targetPlayerNumber;         // ディスプレイ番号
     public Image meter;         // メータ
 
     float meterAmountSplit;     // メータ表示の分割数
@@ -21,13 +21,12 @@ public class VoiceMeter : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        display = display - 1;
         meterAmountSplit = 1.0f / micInput.GetSensitivity();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        vol = micInput.GetLoudness(display);
+        vol = micInput.GetLoudness(targetPlayerNumber);
         SetVoiceMeter(vol);
     }
 }
