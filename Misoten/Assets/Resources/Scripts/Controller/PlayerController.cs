@@ -56,6 +56,11 @@ public class PlayerController : MonoBehaviour {
 
     public bool isDebug;
 
+    public Canvas targetCanvas;
+    public GameObject father;
+    public GameObject heroine;
+    public GameObject targetDebugBottle;
+
     Vector3 goalVector; //ゴールした時のプレイヤーの向き
 
     // Use this for initialization
@@ -174,6 +179,19 @@ public class PlayerController : MonoBehaviour {
                     accelEffect.SetActive(false);
                     SoundManager.StopSE(accelEffectSEIndex);
                 }
+
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    GameObject obj = Instantiate(heroine,targetDebugBottle.transform);
+                    obj.transform.parent = null;
+                }
+
+                if (Input.GetKeyDown(KeyCode.RightShift))
+                {
+                    GameObject obj = Instantiate(father, targetDebugBottle.transform);
+                    obj.transform.parent = null;
+                }
+
                 break;
 
             case PlayerState.CURVE:
@@ -309,5 +327,10 @@ public class PlayerController : MonoBehaviour {
     public void SetPlayerEffectiveSpeed(float speed)
     {
         effectiveSpeed = speed;
+    }
+
+    public Canvas GetTargetCanvas()
+    {
+        return targetCanvas;
     }
 }
