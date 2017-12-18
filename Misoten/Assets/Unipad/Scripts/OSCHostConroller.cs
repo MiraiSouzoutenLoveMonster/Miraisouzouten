@@ -441,7 +441,15 @@ public class OSCHostConroller : MonoBehaviour {
 
 	}
 
+    public int GetPortNum()
+    {
+        return portFromUnipad;
+    }
 
+    public Dictionary<string, xPadChannel> GetxPadChannels()
+    {
+        return xPadChannels;
+    }
 
 	void OnBecameVisible() {
 		#if UNITY_WEBGL

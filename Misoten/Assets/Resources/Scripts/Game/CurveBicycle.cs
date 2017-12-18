@@ -178,7 +178,7 @@ public class CurveBicycle : MonoBehaviour {
                 player.SetPlayerStatus(PlayerState.CURVE);
                 //initplayerSpeed = player.GetPlayerSpeed()*3.5f;
 
-                //initplayerSpeed = player.GetPlayerSpeed();
+                initplayerSpeed = player.GetPlayerSpeed();
 
                 Debug.Log("InitSpeed："+initplayerSpeed);
 

@@ -146,6 +146,18 @@ public class SoundManager : MonoBehaviour{
         BGMSource.loop = loop;
     }
 
+    public static void PauseBGM()
+    {
+        if(BGMSource.isPlaying && BGMSource != null)
+        {
+            BGMSource.Pause();
+        }
+        else if(!BGMSource.isPlaying && BGMSource != null)
+        {
+            BGMSource.UnPause();
+        }
+    }
+
     //BGM停止
     public static void StopBGM()
     {
@@ -214,6 +226,21 @@ public class SoundManager : MonoBehaviour{
         {
             source.Stop();
             source.clip = null;
+        }
+    }
+
+    public static void PauseSEAll()
+    {
+        foreach (AudioSource source in SESources)
+        {
+            if(source.isPlaying && source != null)
+            {
+                source.Pause();
+            }
+            else if(!source.isPlaying && source != null)
+            {
+                source.UnPause();
+            }
         }
     }
 

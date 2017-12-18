@@ -39,6 +39,7 @@ public class Obstacle : Item {
         if(particle != null)
         {
             GameObject obj = Instantiate(particle, targetPlayer.transform);
+            obj.transform.parent = null;
         }
 
         Destroy(gameObject);

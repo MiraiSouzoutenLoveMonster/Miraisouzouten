@@ -21,6 +21,10 @@ public class GameSceneManager : MonoBehaviour {
     public string gameStartBgmName;
     public string gameMainBGM;
 
+    public Canvas[] targetCanvasList;
+    public GameObject pauseObject;
+    GameObject[] pauseObjects;
+
     // Use this for initialization
     void Start () {
         phase = startPhase;
@@ -28,6 +32,12 @@ public class GameSceneManager : MonoBehaviour {
         SoundManager.PlayBGM(gameStartBgmName);
         //startManager.SetStartActive(true);
         //KeijibanClient.SendData("金賞の風格OGSWRBB.png");
+        pauseObjects = new GameObject[targetCanvasList.Length];
+        for (int i = 0; i < targetCanvasList.Length; i++)
+        {
+            pauseObjects[i] = Instantiate(pauseObject,targetCanvasList[i].transform);
+            pauseObjects[i].SetActive(false);
+        }
     }
 	
 	// Update is called once per frame
@@ -48,6 +58,24 @@ public class GameSceneManager : MonoBehaviour {
         if(phase == GamePhase.PHASE_GAME)
         {
             SoundManager.PlayBGM(gameMainBGM);
+            if(Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                bool isActive = !pauseObjects[0].active;
+                for (int i = 0; i < targetCanvasList.Length; i++)
+                {
+                    pauseObjects[i].SetActive(!pauseObjects[i].active);
+                }
+                if(isActive)
+                {
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1.0f;
+                }
+
+                SoundManager.PauseBGM();
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.Return))

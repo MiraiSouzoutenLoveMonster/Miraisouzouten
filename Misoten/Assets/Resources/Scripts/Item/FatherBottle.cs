@@ -8,6 +8,8 @@ public class FatherBottle : Item {
     public float effectPower;
     public float EffectTime;
     public Effect particle;  //このアイテムを取得した時のエフェクトオブジェクト
+    public GameObject CutInObject;
+    Canvas targetCanvas;
 
     float countTime;
 
@@ -52,5 +54,9 @@ public class FatherBottle : Item {
         //CutInManager.CreateCutIn(1, player.GetPlayerNumber());
 
         particle.Create(player.transform);
+
+        //カットイン生成
+        //Canvas canvas = targetPlayer.GetTargetCanvas();
+        //GameObject obj = Instantiate(CutInObject, canvas.transform);
     }
 }
