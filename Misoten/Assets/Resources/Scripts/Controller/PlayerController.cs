@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour {
     public GameObject heroine;
     public GameObject targetDebugBottle;
 
+    public Animator animator;
+    float moveSpeed = 0.0f;
+
     Vector3 goalVector; //ゴールした時のプレイヤーの向き
 
     // Use this for initialization
@@ -75,6 +78,8 @@ public class PlayerController : MonoBehaviour {
         baseSpeed = 50;
 
         effectiveSpeed = 0;
+
+        animator.SetFloat("MoveSpeed", moveSpeed);
     }
 	
 	// Update is called once per frame
@@ -158,6 +163,11 @@ public class PlayerController : MonoBehaviour {
         switch (playerState)
         {
             case PlayerState.NORMAL:
+                if(moveSpeed == 0.0f)
+                {
+                    moveSpeed = 2.0f;
+                    animator.SetFloat("MoveSpeed", moveSpeed);
+                }
                 loudness = mic.GetLoudness(playerNumber);
                 //float loudness = 10.0f;
                 velocity = transform.forward * ((baseSpeed + effectiveSpeed) + (maxSpeed - maxBaseSpeed) * (loudness / voicePower));
