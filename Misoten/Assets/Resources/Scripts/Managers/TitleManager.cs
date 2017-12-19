@@ -5,6 +5,9 @@ public class TitleManager : MonoBehaviour {
 
     public string nextScene = "Game";
 
+    public float GoDemoWaitTime;
+    float countWaitTime = 0.0f;
+
     bool[] isTrigger;
     int initConnectedAndroid;
 
@@ -43,15 +46,34 @@ public class TitleManager : MonoBehaviour {
             isTrigger = new bool[connectedAndroid];
         }
 
+        bool isPush = false;
+
         //対応するアンドロイドのボタンが押されているかを判定
         for(int i = 0; i < connectedAndroid; i++)
         {
             if(AndroidInputManager.GetAndroidInput(i).GetDown())
             {
                 isTrigger[i] = true;
+                isPush = true;
             }
         }
 
+        //押し続けているなどの操作がない場合はカウントをし、
+        //一定時間操作がなかったらデモシーンへ移行
+        if(!isPush)
+        {
+            countWaitTime += Time.deltaTime;
+            if(countWaitTime >= GoDemoWaitTime)
+            {
+                SoundManager.StopBGM();
+                MultiFadeManager.SetNextFade("Demo",0);
+                return;
+            }
+        }
+        else
+        {
+            countWaitTime = 0.0f;
+        }
         //全てのアンドロイドがボタンを押したか判定
         for (int i = 0; i < connectedAndroid; i++)
         {
