@@ -51,7 +51,7 @@ public class HeroineBottle : Item
 
         countTime = 0.0f;
 
-        //CutInManager.CreateCutIn(0,player.GetPlayerNumber());
+        CutInManager.CreateCutIn(0,player.GetPlayerNumber());
 
         particle.Create(player.transform);
     }
